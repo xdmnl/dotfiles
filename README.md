@@ -2,9 +2,10 @@
 
 This repo is a collection of my dotfiles managed by [rcm](https://github.com/thoughtbot/rcm).
 
-## Installation
+## Setup
 
-	rcup -d ~/code/dotfiles -v
+* Download & install [Source code pro font](https://github.com/adobe-fonts/source-code-pro)
+* Read and run parts of [setup.sh](https://github.com/xdmnl/dotfiles/blob/master/setup.sh)
 
 ## Credits
 

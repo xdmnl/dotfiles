@@ -1,2 +1,2 @@
-EXCLUDES="README.md"
+EXCLUDES="README.md setup.sh extra"
 DOTFILES_DIRS="$HOME/code/dotfiles"
