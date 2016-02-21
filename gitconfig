@@ -1,0 +1,25 @@
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	co = checkout
+
+[color]
+	ui = always
+
+[core]
+	excludesfile = ~/.gitignore
+
+[help]
+	autocorrect = 1
+
+# push easily. http://stackoverflow.com/a/23918418/89484
+[push]
+	default = current
+
+# So fancy! (https://github.com/so-fancy/diff-so-fancy)
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
+
+# For private data (username / github token / etc)
+[include]
+  path = ~/.gitconfig.local
