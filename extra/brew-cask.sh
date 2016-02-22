@@ -4,7 +4,6 @@
 brew cask install flux
 brew cask install 1password
 brew cask install dropbox
-brew cask install spectacle
 brew cask install alfred
 brew cask install istat-menus
 

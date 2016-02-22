@@ -19,15 +19,18 @@ sudo pmset -a standbydelay 86400
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
-# Menu bar: hide the Airport, battery and clock icons (replaces by iStats)
+# Menu bar: hide the battery and clock icons (replaced by iStats)
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
 	defaults write "${domain}" dontAutoLoad -array \
-		"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+    "/System/Library/CoreServices/Menu Extras/User.menu" \
 		"/System/Library/CoreServices/Menu Extras/Battery.menu" \
 		"/System/Library/CoreServices/Menu Extras/Clock.menu"
 done
 defaults write com.apple.systemuiserver menuExtras -array \
-	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
+  "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu"
 
 # Show scrollbars when  scrolling
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
@@ -80,7 +83,7 @@ defaults write com.apple.BezelServices kDimTime -int 300
 ###############################################################################
 
 # Finder: show hidden files by default
-defaults write com.apple.Finder AppleShowAllFiles -bool true
+# defaults write com.apple.Finder AppleShowAllFiles -bool true
 
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
