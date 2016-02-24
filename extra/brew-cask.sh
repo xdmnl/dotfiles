@@ -2,10 +2,12 @@
 
 # Life savers
 brew cask install flux
+brew cask install spectacle
 brew cask install 1password
 brew cask install dropbox
 brew cask install alfred
 brew cask install istat-menus
+brew cask install appcleaner
 
 # Dev
 brew cask install iterm2
