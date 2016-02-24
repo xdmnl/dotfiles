@@ -23,3 +23,7 @@
 # For private data (username / github token / etc)
 [include]
   path = ~/.gitconfig.local
+
+# Force all new branches to automatically use rebase
+[branch]
+	autosetuprebase = always
