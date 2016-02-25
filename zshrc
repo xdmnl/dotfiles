@@ -5,6 +5,9 @@ ZSH_THEME="bullet-train"
 
 plugins=(brew gulp npm z)
 
+# Bullet train theme configuration
+BULLETTRAIN_GIT_DIRTY=""
+
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
