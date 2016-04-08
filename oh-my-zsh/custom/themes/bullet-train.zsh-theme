@@ -15,6 +15,25 @@
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
+# Define order and content of prompt
+if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
+  BULLETTRAIN_PROMPT_ORDER=(
+    time
+    status
+    custom
+    context
+    dir
+    perl
+    ruby
+    virtualenv
+    nvm
+    go
+    git
+    hg
+    cmd_exec_time
+  )
+fi
+
 # PROMPT
 if [ ! -n "${BULLETTRAIN_PROMPT_CHAR+1}" ]; then
   BULLETTRAIN_PROMPT_CHAR="\$"
@@ -199,7 +218,7 @@ fi
 
 # GIT PROMPT
 if [ ! -n "${BULLETTRAIN_GIT_PREFIX+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_PREFIX=" \ue0a0 "
+  ZSH_THEME_GIT_PROMPT_PREFIX="\ue0a0 "
 else
   ZSH_THEME_GIT_PROMPT_PREFIX=$BULLETTRAIN_GIT_PREFIX
 fi
@@ -570,8 +589,8 @@ prompt_char() {
     bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char}%f)"
   fi
 
-  if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false  ]]; then
-    bt_prompt_char=" ${bt_prompt_char}"
+  if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]]; then
+    bt_prompt_char="${bt_prompt_char}"
   fi
 
   echo -n $bt_prompt_char
@@ -592,19 +611,10 @@ prompt_line_sep() {
 
 build_prompt() {
   RETVAL=$?
-  prompt_time
-  prompt_status
-  prompt_custom
-  prompt_context
-  prompt_dir
-  prompt_perl
-  prompt_ruby
-  prompt_virtualenv
-  prompt_nvm
-  prompt_go
-  prompt_git
-  prompt_hg
-  prompt_cmd_exec_time
+  for segment in $BULLETTRAIN_PROMPT_ORDER
+  do
+    prompt_$segment
+  done
   prompt_end
 }
 
