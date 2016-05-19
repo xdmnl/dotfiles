@@ -27,3 +27,5 @@
 # Force all new branches to automatically use rebase
 [branch]
 	autosetuprebase = always
+[pull]
+	rebase = true
