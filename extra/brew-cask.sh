@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Life savers
+brew cask install gpgtools
 brew cask install flux
 brew cask install spectacle
 brew cask install 1password
