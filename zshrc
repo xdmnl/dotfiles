@@ -7,6 +7,10 @@ plugins=(brew gulp npm z)
 
 # Bullet train theme configuration
 BULLETTRAIN_GIT_DIRTY=""
+BULLETTRAIN_GO_SHOW=true
+BULLETTRAIN_NVM_SHOW=false
+BULLETTRAIN_VIRTUALENV_SHOW=false
+BULLETTRAIN_HG_SHOW=false
 
 # User configuration
 

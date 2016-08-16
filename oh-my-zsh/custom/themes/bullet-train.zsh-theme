@@ -215,6 +215,9 @@ fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_FG+1}" ]; then
   BULLETTRAIN_CONTEXT_FG=default
 fi
+if [ ! -n "${BULLETTRAIN_CONTEXT_HOSTNAME+1}" ]; then
+  BULLETTRAIN_CONTEXT_HOSTNAME=%m
+fi
 
 # GIT PROMPT
 if [ ! -n "${BULLETTRAIN_GIT_PREFIX+1}" ]; then
@@ -342,7 +345,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 context() {
   local user="$(whoami)"
-  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@%m"
+  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@$BULLETTRAIN_CONTEXT_HOSTNAME"
 }
 prompt_context() {
   [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] && return
@@ -351,20 +354,37 @@ prompt_context() {
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
 
-# Prompt previous command execution time
-preexec() {
-    cmd_timestamp=`date +%s`
+# Based on http://stackoverflow.com/a/32164707/3859566
+function displaytime {
+  local T=$1
+  local D=$((T/60/60/24))
+  local H=$((T/60/60%24))
+  local M=$((T/60%60))
+  local S=$((T%60))
+  [[ $D > 0 ]] && printf '%dd' $D
+  [[ $H > 0 ]] && printf '%dh' $H
+  [[ $M > 0 ]] && printf '%dm' $M
+  printf '%ds' $S
 }
 
-prompt_cmd_exec_time() {
-  if [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]]; then
-    return
-  fi
+# Prompt previous command execution time
+preexec() {
+  cmd_timestamp=`date +%s`
+}
+
+precmd() {
+  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
 
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
-  let local elapsed=$stop-$start
-  [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${elapsed}s"
+  let BULLETTRAIN_last_exec_duration=$stop-$start
+  cmd_timestamp=''
+}
+
+prompt_cmd_exec_time() {
+  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
+
+  [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "$(displaytime $BULLETTRAIN_last_exec_duration)"
 }
 
 # Custom
@@ -466,7 +486,7 @@ prompt_dir() {
 
 # RUBY
 # RVM: only shows RUBY info if on a gemset that is not the default one
-# RBENV: shows current ruby version active in the shell
+# RBENV: shows current ruby version active in the shell; also with non-global gemsets if any is active
 # CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
   if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
@@ -474,14 +494,21 @@ prompt_ruby() {
   fi
 
   if command -v rvm-prompt > /dev/null 2>&1; then
-    if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
-    then
+    if [[ -n $(rvm-prompt | grep "@") ]] then
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
     fi
   elif command -v chruby > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -n -e 's/ \* //p')"
   elif command -v rbenv > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
+    current_gemset() {
+      echo "$(rbenv gemset active 2&>/dev/null | sed -e 's/ global$//')"
+    }
+
+    if [[ -n $(current_gemset) ]]; then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"@"$(current_gemset)"
+    else
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
+    fi
   fi
 }
 
@@ -531,11 +558,13 @@ prompt_nvm() {
     return
   fi
 
-  $(type nvm >/dev/null 2>&1) || return
-
   local nvm_prompt
-  nvm_prompt=$(nvm current 2>/dev/null)
-  [[ "${nvm_prompt}x" == "x" ]] && return
+  if type nvm >/dev/null 2>&1; then
+    nvm_prompt=$(nvm current 2>/dev/null)
+    [[ "${nvm_prompt}x" == "x" ]] && return
+  else
+    nvm_prompt="$(node --version)"
+  fi
   nvm_prompt=${nvm_prompt}
   prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
 }
