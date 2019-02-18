@@ -21,15 +21,11 @@ main() {
 
   ./install/xcode.sh
   ./install/homebrew.sh
-  ./install/oh-my-zsh.sh
+  ./install/zsh.sh
   ./install/brews.sh
   ./install/ssh_keys.sh
   ./preferences/macos.sh
   ./preferences/git.sh
-
-  execute \
-    "rcup -d .." \
-    "Symlink dotfiles"
 
   maybe_restart
 }
