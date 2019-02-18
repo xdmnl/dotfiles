@@ -54,7 +54,7 @@ main() {
   print_in_purple "\n • Xcode\n\n"
 
   install_xcode_command_line_tools
-  install_xcode
+  # install_xcode
   agree_with_xcode_licence
 }
 
