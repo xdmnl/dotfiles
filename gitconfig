@@ -1,14 +1,40 @@
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --graph --pretty=custom
 	co = checkout
-  sync = !git checkout master > /dev/null && echo "Fetching upstream..." && git fetch upstream && git merge upstream/master
+
+  # List details of branches
+  branches = branch -vv
+
+  # Update current branch with master
+  update = !echo "Fetching origin..." && git fetch origin && git merge --no-ff origin/master
+
+  # Remove last commits (by default it removes the last commit).
+  rollback = "!f() { \
+    declare n=\"${1:-1}\"; \
+    git reset --hard \"HEAD~$n\"; \
+  }; f"
+
+  # Undo last commits (by default it undoes the last commit).
+  undo = "!f() { \
+    declare n=\"${1:-1}\"; \
+    git reset --soft \"HEAD~$n\"; \
+  }; f"
 
 [color]
 	ui = always
 
+[pretty]
+  custom = "%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"
+  #                 │                      │           │            │                   └─ author name
+  #                 │                      │           │            └─ date (relative)
+  #                 │                      │           └─ message
+  #                 │                      └─ decorations (branch, heads or tags)
+  #                 └─ hash (abbreviated)
+
 [core]
 	excludesfile = ~/.gitignore
 
+# correct typos
 [help]
 	autocorrect = 1
 
@@ -21,12 +47,24 @@
 	diff = diff-so-fancy | less --tabs=1,5 -RFX
 	show = diff-so-fancy | less --tabs=1,5 -RFX
 
-# For private data (username / github token / etc)
-[include]
-  path = ~/.gitconfig.local
-
 # Force all new branches to automatically use rebase
-[branch]
-	autosetuprebase = always
 [pull]
 	rebase = true
+
+# Automatic housekeeping
+[fetch]
+  prune = true
+
+[stash]
+  showPatch = true
+
+[merge]
+  ff = false
+
+[include]
+  # Load local configs.
+  # https://git-scm.com/docs/git-config#_includes
+  #
+  # /!\ The following needs to remain at the end of this file in order to allow
+  #     any of the above configs to be overwritten by the local ones.
+  path = ~/.gitconfig.local

@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="bullet-train"
 
-plugins=(brew gulp npm z)
+plugins=(brew npm z)
 
 # Bullet train theme configuration
 BULLETTRAIN_GIT_DIRTY=""
@@ -11,6 +11,9 @@ BULLETTRAIN_GO_SHOW=true
 BULLETTRAIN_NVM_SHOW=false
 BULLETTRAIN_VIRTUALENV_SHOW=false
 BULLETTRAIN_HG_SHOW=false
+
+# Zsh completions
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 # User configuration
 

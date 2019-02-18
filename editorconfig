@@ -5,13 +5,15 @@ root = true
 
 # Unix-style newlines with a newline ending every file
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
 charset = utf-8
+indent_size = 2
+indent_style = space
+end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
 [*.{md, apib}]
-indent_size = 4
+# Markdown uses the trailing whitespaces.
+# https://daringfireball.net/projects/markdown/syntax#block
 trim_trailing_whitespace = false
+indent_size = 4
