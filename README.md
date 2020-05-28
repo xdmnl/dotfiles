@@ -18,7 +18,7 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 ```
 4. Symlink your files
 ```bash
-rcup -d ~/code/dotfiles
+rcup -d ~/code/dotfiles -x README.md -x src
 ```
 
 ## Credits
