@@ -3,14 +3,19 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="bullet-train"
 
-plugins=(brew npm z)
+plugins=(brew npm z zsh-nvm)
 
 # Bullet train theme configuration
+BULLETTRAIN_PROMPT_ORDER=(
+  time
+  status
+  dir
+  screen
+  git
+  cmd_exec_time
+)
+BULLETTRAIN_CONTEXT_DEFAULT_USER="xavier"
 BULLETTRAIN_GIT_DIRTY=""
-BULLETTRAIN_GO_SHOW=true
-BULLETTRAIN_NVM_SHOW=false
-BULLETTRAIN_VIRTUALENV_SHOW=false
-BULLETTRAIN_HG_SHOW=false
 
 # Zsh completions
 fpath=(/usr/local/share/zsh-completions $fpath)
