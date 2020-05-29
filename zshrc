@@ -7,11 +7,10 @@ plugins=(brew npm z zsh-nvm)
 
 # Bullet train theme configuration
 BULLETTRAIN_PROMPT_ORDER=(
-  time
-  status
   dir
   screen
   git
+  status
   cmd_exec_time
 )
 BULLETTRAIN_CONTEXT_DEFAULT_USER="xavier"
