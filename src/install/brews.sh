@@ -16,7 +16,7 @@ main () {
   print_in_purple "\n • Dev\n\n"
 
   brew_install "Git" "git"
-  brew_install "GitHub tools" "hub"
+  brew_install "GitHub tools" "gh"
   brew_install "Better git diff" "diff-so-fancy"
   brew_cask_install "Dash" "dash"
   brew_install "Golang" "go"
