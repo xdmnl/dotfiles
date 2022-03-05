@@ -5,6 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"  && . "utils.sh"
 declare backupDirectory="$HOME/backup"
 
 declare -a BACKUP_TARGETS=(
+  "$HOME/.zsh_history"
   "$HOME/.gitconfig.local"
   # /!\ SSH keys should be rotated as soon as possible.
   "$HOME/.ssh"
@@ -15,11 +16,10 @@ declare -a BACKUP_TARGETS=(
   # "$HOME/Pictures"
 )
 
-ask_for_sudo
-
 print_in_purple "\n • Create backup\n\n"
 
 mkd "$backupDirectory/home"
+mkd "$backupDirectory/rootLibrary/Preferences/SystemConfiguration/"
 
 execute \
   "brew leaves > $backupDirectory/brew-list.txt" \
@@ -30,7 +30,7 @@ execute \
   "Backup the list brew cask installs"
 
 execute \
-  "cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist $backupDirectory" \
+  "cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist $backupDirectory/rootLibrary/Preferences/SystemConfiguration/" \
   "Backup wifi preferences"
 
 for i in "${BACKUP_TARGETS[@]}"; do
