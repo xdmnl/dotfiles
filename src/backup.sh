@@ -26,7 +26,7 @@ execute \
   "Backup the list of top-level brew installs"
 
 execute \
-  "brew cask list > $backupDirectory/cask-list.txt" \
+  "brew list --cask > $backupDirectory/cask-list.txt" \
   "Backup the list brew cask installs"
 
 execute \
