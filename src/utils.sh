@@ -231,8 +231,6 @@ brew_install() {
   declare -r FORMULA_READABLE_NAME="$1"
   declare -r FORMULA="$2"
   declare -r CMD_ARGUMENTS="$3"
-  declare -r TAP_VALUE="$4"
-  declare -r CMD="$5"
 
 
   # Check if `Homebrew` is installed.
@@ -242,37 +240,14 @@ brew_install() {
   fi
 
 
-  # If `brew tap` needs to be executed, check if it executed correctly.
-  if [ -n "$TAP_VALUE" ]; then
-    if ! brew_tap "$TAP_VALUE"; then
-      print_error "$FORMULA_READABLE_NAME ('brew tap $TAP_VALUE' failed)"
-        return 1
-    fi
-  fi
-
   # Install the specified formula.
-
-  # shellcheck disable=SC2086
-  if brew $CMD list "$FORMULA" &> /dev/null; then
+  if brew list "$FORMULA" &> /dev/null; then
     print_success "$FORMULA_READABLE_NAME"
   else
     execute \
-      "brew $CMD install $FORMULA $CMD_ARGUMENTS" \
+      "brew install $FORMULA $CMD_ARGUMENTS" \
       "$FORMULA_READABLE_NAME"
   fi
-}
-
-brew_cask_install() {
-  declare -r FORMULA_READABLE_NAME="$1"
-  declare -r FORMULA="$2"
-  declare -r TAP_VALUE="$3"
-
-  if [ -n "$TAP_VALUE" ]; then
-    brew_install "$FORMULA_READABLE_NAME" "$FORMULA" "" "$TAP_VALUE" "cask"
-  else
-    brew_install "$FORMULA_READABLE_NAME" "$FORMULA" "" "" "cask"
-  fi
-
 }
 
 brew_tap() {
