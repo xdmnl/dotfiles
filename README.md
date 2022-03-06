@@ -12,11 +12,7 @@ mkdir -p ~/code/dotfiles && curl -L https://github.com/xdmnl/dotfiles/tarball/ma
 ```bash
 sh ~/code/dotfiles/src/setup.sh
 ```
-3. Install [Oh My Zsh](https://ohmyz.sh/)
-```bash
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-```
-4. Symlink your files
+3. Symlink your files
 ```bash
 rcup -d ~/code/dotfiles -x README.md -x src
 ```
