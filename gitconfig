@@ -33,6 +33,10 @@
 
 [core]
 	excludesfile = ~/.gitignore
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
 
 # correct typos
 [help]
@@ -41,11 +45,6 @@
 # push easily. http://stackoverflow.com/a/23918418/89484
 [push]
 	default = current
-
-# So fancy! (https://github.com/so-fancy/diff-so-fancy)
-[pager]
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
-	show = diff-so-fancy | less --tabs=1,5 -RFX
 
 # Force all new branches to automatically use rebase
 [pull]
@@ -68,5 +67,3 @@
   # /!\ The following needs to remain at the end of this file in order to allow
   #     any of the above configs to be overwritten by the local ones.
   path = ~/.gitconfig.local
-[diff "sopsdiffer"]
-	textconv = sops -d
