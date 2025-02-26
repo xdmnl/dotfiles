@@ -1,3 +1,40 @@
+[alias]
+  lg = log --graph --pretty=custom
+  co = checkout
+  branches = branch -vv
+
+[pretty]
+  custom = "%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"
+  #                 │                      │           │            │                   └─ author name
+  #                 │                      │           │            └─ date (relative)
+  #                 │                      │           └─ message
+  #                 │                      └─ decorations (branch, heads or tags)
+  #                 └─ hash (abbreviated)
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[help]
+  autocorrect = 1 # correct typos
+
+[push]
+  default = current # push easily (http://stackoverflow.com/a/23918418/89484)
+
+[pull]
+  rebase = true # Force all new branches to automatically use rebase
+
+[fetch]
+  prune = true # Automatic housekeeping
+
+[stash]
+  showPatch = true
+
+[merge]
+  ff = false
+
 [include]
   # Load local configs.
   # https://git-scm.com/docs/git-config#_includes
