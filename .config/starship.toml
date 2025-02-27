@@ -12,7 +12,8 @@ $ruby\
 $golang\
 $git_branch\
 $git_status\
-[](prev_bg)\
+[ ](prev_bg)\
+$git_metrics\
 $fill\
 $kubernetes
 $character
@@ -79,7 +80,7 @@ format = "[ ](fg:prev_bg bg:sapphire)[$symbol ($version )]($style)"
 
 [git_branch]
 style = "fg:text bg:surface0"
-format = "[ ](fg:prev_bg bg:surface0)[$symbol$branch(:$remote_branch)]($style)"
+format = "[ ](fg:prev_bg bg:surface0)[$symbol$branch(:$remote_branch) ]($style)"
 
 [git_status]
 style = "fg:text bg:surface0"
@@ -91,10 +92,16 @@ up_to_date = ""
 untracked = "[✭](fg:yellow bg:surface0)"
 stashed = "[≡](fg:green bg:surface0)"
 modified = "[✹](fg:blue bg:surface0)"
-staged = '[✚\($count\)](fg:green bg:surface0)'
+staged = '[✚](fg:green bg:surface0)'
 renamed = "➜"
 deleted = "[✖](fg:red bg:surface0)"
-format = "[ $all_status ($ahead_behind)]($style)"
+format = "[$all_status ($ahead_behind )]($style)"
+
+[git_metrics]
+disabled = false
+added_style = "green"
+deleted_style= "maroon"
+format = "[(+$added)]($added_style)[(-$deleted)]($deleted_style) "
 
 [fill]
 symbol = " "
