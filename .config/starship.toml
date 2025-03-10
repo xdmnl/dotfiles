@@ -12,8 +12,8 @@ $ruby\
 $golang\
 $git_branch\
 $git_status\
-[ ](prev_bg)\
 $git_metrics\
+[](prev_bg)\
 $fill\
 $kubernetes
 $character
@@ -27,7 +27,7 @@ palette = 'catppuccin_mocha'
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
 pink = "#f5c2e7"
-orange = "#cba6f7"
+mauve = "#cba6f7"
 red = "#f38ba8"
 maroon = "#eba0ac"
 peach = "#fab387"
@@ -99,17 +99,20 @@ format = "[$all_status ($ahead_behind )]($style)"
 
 [git_metrics]
 disabled = false
-added_style = "green"
-deleted_style= "maroon"
-format = "[(+$added)]($added_style)[(-$deleted)]($deleted_style) "
+added_style = "fg:green bg:surface0"
+deleted_style= "fg:maroon bg:surface0"
+format = "[(+$added)]($added_style)[(-$deleted) ]($deleted_style)"
 
 [fill]
 symbol = " "
 
 [kubernetes]
 disabled = false
-style = "teal"
+style = "lavender"
 format = '[$symbol$context \($namespace\) ]($style)'
 
 [aws]
+disabled = true
+
+[cmd_duration]
 disabled = true
