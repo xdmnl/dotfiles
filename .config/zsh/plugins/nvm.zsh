@@ -3,8 +3,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Source: https://github.com/nvm-sh/nvm#zsh
-autoload -U add-zsh-hook
-
 load-nvmrc() {
   local nvmrc_path
   nvmrc_path="$(nvm_find_nvmrc)"  
@@ -19,5 +17,6 @@ load-nvmrc() {
   fi
 }
 
+autoload -U add-zsh-hook
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc

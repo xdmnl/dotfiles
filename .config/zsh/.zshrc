@@ -3,12 +3,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Initialize Starship prompt
 eval "$(starship init zsh)"
 
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+setopt EXTENDED_HISTORY         # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY            # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS         # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_SPACE        # Do not record an event starting with a space.
+setopt HIST_VERIFY              # Do not execute immediately upon history expansion.
+
+unsetopt LIST_BEEP              # Turn off autocomplete beeps.
 
 # -----------------------------------------------------------------------------
 # Aliases
@@ -26,7 +28,14 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # -----------------------------------------------------------------------------
 # Completions
 # -----------------------------------------------------------------------------
+
 autoload -U compinit; compinit
+
+# Ztyle pattern
+# :completion:<function>:<completer>:<command>:<argument>:<tag>
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZDOTDIR/.zcompcache"
 
 # Allow you to select in a menu
 zstyle ':completion:*' menu select
@@ -70,4 +79,6 @@ source "$HOMEBREW_PREFIX/etc/profile.d/z.sh"
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
 
+source "$ZDOTDIR/plugins/npm.zsh"
 source "$ZDOTDIR/plugins/nvm.zsh"
+source "$ZDOTDIR/plugins/ssh.zsh"
