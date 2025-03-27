@@ -5,5 +5,6 @@
 !git/gitconfig.local.example
 !setup/**
 !zsh/plugins/**
+zsh/plugins/work.zsh
 !zsh/.zshrc
 !starship.toml

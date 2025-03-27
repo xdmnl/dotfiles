@@ -82,3 +82,4 @@ source "$HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substrin
 source "$ZDOTDIR/plugins/npm.zsh"
 source "$ZDOTDIR/plugins/nvm.zsh"
 source "$ZDOTDIR/plugins/ssh.zsh"
+source "$ZDOTDIR/plugins/work.zsh"
