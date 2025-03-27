@@ -1,0 +1,9 @@
+*
+!.gitignore
+
+# Whitelist
+!git/gitconfig.local.example
+!setup/**
+!zsh/plugins/**
+!zsh/.zshrc
+!starship.toml
