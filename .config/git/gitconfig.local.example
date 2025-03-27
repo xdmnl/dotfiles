@@ -1,0 +1,10 @@
+[commit]
+  gpgsign = true # Sign all commits by default
+
+[tag]
+  gpgsign = true # Sign all tags by default
+
+[user]
+  name = John Doe
+  email = john.doe@example.com
+  signingkey = KEY_ID
