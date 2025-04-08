@@ -8,3 +8,4 @@
 zsh/plugins/work.zsh
 !zsh/.zshrc
 !starship.toml
+!RectangleConfig.json
