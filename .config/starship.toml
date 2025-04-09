@@ -11,6 +11,7 @@ $nodejs\
 $ruby\
 $golang\
 $git_branch\
+$git_state\
 $git_status\
 $git_metrics\
 [](prev_bg)\
@@ -81,6 +82,10 @@ format = "[ ](fg:prev_bg bg:sapphire)[$symbol ($version )]($style)"
 [git_branch]
 style = "fg:text bg:surface0"
 format = "[ ](fg:prev_bg bg:surface0)[$symbol$branch(:$remote_branch) ]($style)"
+
+[git_state]
+style = "fg:yellow bg:surface0"
+format = "[$state( $progress_current/$progress_total) ]($style)"
 
 [git_status]
 style = "fg:text bg:surface0"
