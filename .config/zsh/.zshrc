@@ -50,11 +50,13 @@ typeset -gA keys=(
   Right                '^[[C'
   Left                 '^[[D'
   Esc                  '^['
+  Tab                  '^I'
 
   Shift+Up             '^[[1;2A'
   Shift+Down           '^[[1;2B'
   Shift+Right          '^[[1;2C'
   Shift+Left           '^[[1;2D'
+  Shift+Tab            '^[[Z'
 
   Alt+Up               '^[[1;3A'
   Alt+Down             '^[[1;3B'
@@ -67,9 +69,11 @@ typeset -gA keys=(
   Ctrl+Left            '^[[1;5D'
 )
 
-bindkey -- "${keys[Up]}"    history-substring-search-up
-bindkey -- "${keys[Down]}"  history-substring-search-down
-bindkey -- "${keys[Esc]}"   autosuggest-clear
+bindkey -- "${keys[Up]}"                history-substring-search-up
+bindkey -- "${keys[Down]}"              history-substring-search-down
+bindkey -- "${keys[Esc]}"               autosuggest-clear
+bindkey -- "${keys[Tab]}${keys[Tab]}"   autosuggest-accept
+bindkey -- "${keys[Shift+Tab]}"         reverse-menu-complete
 
 # -----------------------------------------------------------------------------
 # Plugins
