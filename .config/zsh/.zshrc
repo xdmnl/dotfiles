@@ -8,6 +8,7 @@ setopt HIST_EXPIRE_DUPS_FIRST   # Expire a duplicate event first when trimming h
 setopt HIST_IGNORE_DUPS         # Do not record an event that was just recorded again.
 setopt HIST_IGNORE_SPACE        # Do not record an event starting with a space.
 setopt HIST_VERIFY              # Do not execute immediately upon history expansion.
+setopt MENU_COMPLETE            # Automatically highlight first element of completion menu
 
 unsetopt LIST_BEEP              # Turn off autocomplete beeps.
 
@@ -33,6 +34,8 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # Completions
 # -----------------------------------------------------------------------------
 
+# Needs to be called before compinit
+zmodload zsh/complist
 autoload -U compinit; compinit
 
 # Ztyle pattern
@@ -76,7 +79,8 @@ typeset -gA keys=(
 bindkey -- "${keys[Up]}"                history-substring-search-up
 bindkey -- "${keys[Down]}"              history-substring-search-down
 bindkey -- "${keys[Esc]}"               autosuggest-clear
-bindkey -- "${keys[Tab]}${keys[Tab]}"   autosuggest-accept
+bindkey -- "${keys[Tab]}"               autosuggest-accept
+bindkey -- "${keys[Tab]}${keys[Tab]}"   expand-or-complete
 bindkey -- "${keys[Shift+Tab]}"         reverse-menu-complete
 
 # -----------------------------------------------------------------------------
