@@ -1,7 +1,6 @@
-# Setup Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-# Initialize Starship prompt
-eval "$(starship init zsh)"
+export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
+export HISTSIZE=10000                   # Maximum events for internal history
+export SAVEHIST=10000                   # Maximum events in history file
 
 setopt EXTENDED_HISTORY         # Write the history file in the ':start:elapsed;command' format.
 setopt SHARE_HISTORY            # Share history between all sessions.
@@ -11,6 +10,11 @@ setopt HIST_IGNORE_SPACE        # Do not record an event starting with a space.
 setopt HIST_VERIFY              # Do not execute immediately upon history expansion.
 
 unsetopt LIST_BEEP              # Turn off autocomplete beeps.
+
+# Setup Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# Initialize Starship prompt
+eval "$(starship init zsh)"
 
 # -----------------------------------------------------------------------------
 # Aliases
