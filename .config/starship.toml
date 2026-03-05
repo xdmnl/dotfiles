@@ -100,13 +100,13 @@ modified = "[✹](fg:blue bg:surface0)"
 staged = '[✚](fg:green bg:surface0)'
 renamed = "➜"
 deleted = "[✖](fg:red bg:surface0)"
-format = "[$all_status ($ahead_behind )]($style)"
+format = "[($all_status )($ahead_behind )]($style)"
 
 [git_metrics]
 disabled = false
 added_style = "fg:green bg:surface0"
 deleted_style= "fg:maroon bg:surface0"
-format = "[(+$added)]($added_style)[(-$deleted) ]($deleted_style)"
+format = "[(+$added)]($added_style)[(-$deleted)]($deleted_style)"
 
 [fill]
 symbol = " "
