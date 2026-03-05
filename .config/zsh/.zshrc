@@ -89,6 +89,7 @@ bindkey -- "${keys[Shift+Tab]}"         reverse-menu-complete
 
 source "$HOMEBREW_PREFIX/etc/profile.d/z.sh"
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source "$HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
 
 source "$ZDOTDIR/plugins/npm.zsh"

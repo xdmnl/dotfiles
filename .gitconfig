@@ -30,10 +30,11 @@
   diffFilter = delta --color-only
 
 [help]
-  autocorrect = 1 # correct typos
+  autocorrect = "immediate" # correct typos
 
 [push]
   default = current # push easily (http://stackoverflow.com/a/23918418/89484)
+  autoSetupRemote = true
 
 [pull]
   rebase = true # Force all new branches to automatically use rebase
@@ -51,6 +52,6 @@
   # Load local configs.
   # https://git-scm.com/docs/git-config#_includes
   #
-  # /!\ The following needs to remain at the end of this file in order to allow
+  # ⚠️ The following needs to remain at the end of this file in order to allow
   #     any of the above configs to be overwritten by the local ones.
   path = ~/.config/git/gitconfig.local
