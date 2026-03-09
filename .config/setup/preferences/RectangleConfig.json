@@ -50,7 +50,7 @@
       "int" : 0
     },
     "cycleSizesIsChanged" : {
-      "bool" : false
+      "bool" : true
     },
     "disabledApps" : {
 
@@ -96,6 +96,9 @@
     },
     "hideMenubarIcon" : {
       "bool" : false
+    },
+    "horizontalSplitRatio" : {
+      "float" : 50
     },
     "ignoreDragSnapToo" : {
       "int" : 0
@@ -163,13 +166,19 @@
     "screenEdgeGapsOnMainScreenOnly" : {
       "bool" : false
     },
-    "selectedCycleSizes" : {
+    "screensOrderedByX" : {
       "int" : 0
+    },
+    "selectedCycleSizes" : {
+      "int" : 23
     },
     "shortEdgeSnapAreaSize" : {
       "float" : 145
     },
     "showAllActionsInMenu" : {
+      "int" : 0
+    },
+    "showEighthsInMenu" : {
       "int" : 0
     },
     "sixthsSnapArea" : {
@@ -215,7 +224,7 @@
       "int" : 2
     },
     "todoApplication" : {
-
+      "string" : "com.apple.Music"
     },
     "todoMode" : {
       "bool" : false
@@ -231,6 +240,12 @@
     },
     "unsnapRestore" : {
       "int" : 2
+    },
+    "verticalSplitRatio" : {
+      "float" : 50
+    },
+    "widthStepSize" : {
+      "float" : 30
     },
     "windowSnapping" : {
       "int" : 0
@@ -330,5 +345,5 @@
       "modifierFlags" : 1441792
     }
   },
-  "version" : "93"
+  "version" : "100"
 }
