@@ -4,6 +4,7 @@
 
 !.gitignore
 !git/gitconfig.local.example
+!ghostty/config.ghostty
 !setup/**
 !zsh/plugins/**
 zsh/plugins/work.zsh
